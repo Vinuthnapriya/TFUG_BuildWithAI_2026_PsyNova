@@ -1,52 +1,63 @@
 # TFUG_BuildWithAI_2026_PsyNova
 PsyNova is an AI-powered mental wellness platform that uses interactive, scenario-based assessments to analyze user responses and identify patterns related to stress, anxiety, and overall well-being. It provides personalized, non-clinical guidance while promoting awareness, self-improvement, and encouraging professional help when needed.
 
-PsyNova Full-Stack Architecture Walkthrough
-We have successfully migrated the PsyNova HTML prototypes into a modern, uncoupled, full-stack web application.
+# PsyNova - AI Mental Wellness Platform
 
-1. What was Accomplished
-🎨 React Frontend (/psynova/client)
-We integrated the "Luminous Sanctuary" design system seamlessly into a React Vite application.
+PsyNova is a full-stack web application designed for interactive mental wellness assessments, utilizing a modern tech stack centered on a gorgeous neon visual aesthetic, Node.js API mediation, and Python-driven intelligence.
 
-Components Migrated:
-LandingPage: Hero copy, interactive widgets, neon stylistic borders.
-LoginSignup: Form authentication UI elements.
-Dashboard: Overview metrics module and journaling tools.
-Assessment: Selectable mock questionnaire layout.
-AiInsights: End-of-state overview rendering mock model outputs.
-Navigation Setup: Basic routing mapping via react-router-dom within App.jsx.
-Aesthetics Fixed: React specific DOM rules such as className conversions and self-closing tags applied.
-⚙️ Node.js API Server (/psynova/server)
-A foundational middleware layer built to securely bridge the React frontend with the data science tooling.
+## 🌟 Tech Stack
 
-Express Entry point: Scaffolded index.js featuring functional routes (/api/health, /api/analyze).
-CORS: Ready out of the box for handling cross-origin requests coming from Vite's localhost:5173.
-🧠 Python AI Service (/psynova/ai_service)
-An endpoint to digest psychological profiles and classify predictive metrics.
+- **Frontend**: React + Vite, styled using Tailwind CSS and the custom *Luminous Sanctuary* design system.
+- **Backend**: Node.js + Express.js gateway.
+- **AI Service**: Python + Flask inference engine parsing `.csv` data pipelines using Pandas.
 
-Dataset integrated: Migrated mental_disorders_dataset.csv natively adjacent to the app for consumption.
-Flask Endpoint: Established a /predict endpoint that processes POST requests and resolves them with insights corresponding to our CSV's Expert Diagnose column.
-2. Running Application Locally
-To see PsyNova in its complete functional behavior, you'll want to boot all three microservices in independent terminal tabs.
+## 📂 Project Structure
 
-Terminal 1: React Application
-bash
+- `/client` - The Vite + React frontend implementation containing all views, components, and router configuration.
+- `/server` - Express server acting as the gateway for frontend submissions and relaying inference to the AI service.
+- `/ai_service` - The Python Flask server that consumes the `mental_disorders_dataset.csv` to map inputs to psychological insights.
+
+## 🚀 Getting Started
+
+The platform utilizes a microservice architecture. To view the complete loop, you must start the three independent services.
+
+### 1. Start the React Frontend
+
+Open a new terminal and navigate to the client directory:
+
+```bash
 cd psynova/client
+npm install
 npm run dev
-The React app should spin up at http://localhost:5173/.
+```
+*The app will launch on `http://localhost:5173/`*
 
-Terminal 2: Node.js Orchestration API
-bash
+### 2. Start the Node.js API
+
+Open a second terminal and navigate to the server directory:
+
+```bash
 cd psynova/server
-npm i
+npm install
 node index.js
-The Node.js proxy should confirm it is listening on port 5000.
+```
+*The backend API will run on `http://localhost:5000/`*
 
-Terminal 3: AI Inference Engine
-bash
+### 3. Start the Python AI Engine
+
+Open a third terminal, navigate to the AI service, setup the python environment, and start the inference API:
+
+```bash
 cd psynova/ai_service
 python -m venv venv
-venv\Scripts\activate # (on Windows)
+
+# On Windows:
+.\venv\Scripts\activate
+# On Mac/Linux:
+# source venv/bin/activate
+
 pip install -r requirements.txt
 python app.py
-The Flask server will boot on port 5001, waiting for inference calls from the Node API.
+```
+*The Flask inference API will run on `http://localhost:5001/`*
+
